@@ -16,7 +16,7 @@ function followed(event){
 	console.log("Follow event")
 	var name = event.source.name;
 	var screenName = event.source.screen_name;
-	tweetIt('@'+screen_name+' Thanks for following me :)';
+	tweetIt('@'+screen_name+' Thanks for following me :)');
 }
 
 //Anytime someone tweets me
@@ -60,11 +60,12 @@ function tweetIt(update){
 	var tweet = {
 		status: update
 	}
+	console.log("Tweet");
 
 	T.post('statuses/update', tweet, tweeted);
 
-	
 }
+
 function tweeted(err,data,response){
 	if (err)
 		{
@@ -94,4 +95,8 @@ function tweetImage(filename){
 	}
 }
 
-
+//Tweet a random number for testing
+setInterval(function(){
+	var randNo = Math.random()*1000;
+	tweetIt("Hello "+(randNo+9)+" My name is "+(randNo-9));
+},10000)
