@@ -95,8 +95,3 @@ function tweetImage(filename){
 	}
 }
 
-//Tweet a random number for testing
-setInterval(function(){
-	var randNo = Math.random()*1000;
-	tweetIt("Hello "+(randNo+9)+" My name is "+(randNo-9));
-},10000)
