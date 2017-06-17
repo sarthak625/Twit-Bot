@@ -19,7 +19,18 @@ function gotData(err,data,response){
 	}
 }
 
+var tweet = {
+	status: 'Life is awesome'
+}
 
+T.post('statuses/update', tweet, tweeted);
+
+function tweeted(err,data,response){
+	if (err)
+		console.log("Something went wrong");
+	else
+		console.log("Tweet");
+}
 
 
 
