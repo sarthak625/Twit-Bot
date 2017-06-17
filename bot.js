@@ -15,10 +15,28 @@ stream.on('follow',followed);
 function followed(event){
 	console.log("Follow event")
 	var name = event.source.name;
-	var screenName = eventMsg.source.screen_name;
-	tweetIt('@'+screenName+' ,do you like rainbows?');
+	var screenName = event.source.screen_name;
+	tweetIt('@'+screen_name+' Thanks for following me :)';
 }
 
+//Anytime someone tweets me
+stream.on('tweet',tweetEvent);
+
+function tweetEvent(eventMsg){
+	//var json = JSON.stringify(eventMsg,null,2);
+	//fs.writeFile("tweet.json",json);
+	var replyTo = eventMsg.in_reply_to_screen_name;
+	var from = eventMsg.user.screen_name;
+	var text = eventMsg.text;
+
+	console.log(replyTo+ "-----" +from	)
+
+	if (replyTo === 'snTest12345'){
+		var auto_reply = "@"+from+" .Thank you for tweeting me. You are awesome :)";
+		tweetIt(auto_reply);
+	}
+
+}
 
 //Code to search for a tweet
 function searchIt(searchString, tweetCount){
@@ -76,5 +94,4 @@ function tweetImage(filename){
 	}
 }
 
-tweetImage('/home/sarthak/Pictures/ronaldo.jpg')
 
